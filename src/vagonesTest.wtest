@@ -1,0 +1,54 @@
+import vagones.*
+
+test "Vagón de pasajeros" {
+	const vagon = new VagonDePasajeros(
+		largo = 10,
+		ancho = 10
+	)
+	assert.notThat(vagon.estaHabilitado())
+	assert.notThat(vagon.tieneBanio())
+	assert.equals(100, vagon.cantidadDePasajeros())
+	assert.equals(800, vagon.cargaMaxima())
+	
+	vagon.hacerMantenimiento()
+	assert.equals(new Date(), vagon.ultimaRevision())
+}
+
+test "Vagón de carga" {
+	const vagon = new VagonDeCarga(
+		cargaMaximaIdeal = 5000,
+		maderasSueltas = 10
+	)
+	assert.notThat(vagon.tieneBanio())
+	assert.equals(0, vagon.cantidadDePasajeros())
+	assert.equals(1000, vagon.cargaMaxima())
+
+	vagon.hacerMantenimiento()
+	assert.equals(new Date(), vagon.ultimaRevision())
+	assert.equals(8, vagon.maderasSueltas())	
+}
+
+test "Vagón dormitorio" {
+	const vagon = new VagonDormitorio(
+		compartimientos = 4,
+		camasPorCompartimiento = 2
+	)
+	assert.that(vagon.tieneBanio())
+	assert.equals(8, vagon.cantidadDePasajeros())
+	assert.equals(1200, vagon.cargaMaxima())
+}
+
+test "Vagón de pasajeros con bicis" {
+	const vagon = new VagonConBicis(
+		largo = 10,
+		ancho = 10,
+		cantidadDeBicis = 5
+	)
+	assert.notThat(vagon.estaHabilitado())
+	assert.notThat(vagon.tieneBanio())
+	assert.equals(90, vagon.cantidadDePasajeros())
+	assert.equals(800, vagon.cargaMaxima())
+	
+	vagon.hacerMantenimiento()
+	assert.equals(new Date(), vagon.ultimaRevision())
+}

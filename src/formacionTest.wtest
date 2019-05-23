@@ -1,0 +1,20 @@
+import vagones.*
+import formacion.*
+
+describe "Formaciones" {
+
+	const vagonDePasajeros = new VagonDePasajeros(largo = 10, ancho = 10)
+	const vagonDeCarga = new VagonDeCarga(cargaMaximaIdeal = 5000, maderasSueltas = 10)
+	const vagonDormitorio = new VagonDormitorio(compartimientos = 4, camasPorCompartimiento = 2)
+	
+	const formacion = new Formacion(vagones = [vagonDePasajeros, vagonDeCarga, vagonDormitorio])
+
+	test "puede llevar muchos pasajeros" {
+		assert.equals(108, formacion.pasajerosQuePuedeLlevar())
+	}
+	test "tiene pocos baños" {
+		assert.equals(1, formacion.cantidadDeBanios())
+	}
+
+}
+
