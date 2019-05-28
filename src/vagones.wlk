@@ -66,7 +66,6 @@ class VagonDormitorio inherits Vagon {
 class VagonConBicis inherits VagonDePasajeros { 
 	const cantidadDeBicis
 	
-	override method cantidadDePasajeros() = super() - 2 * cantidadDeBicis
-
-	override method tieneBanio() = false
+	override method cantidadDePasajeros() = 
+		(largo - cantidadDeBicis) * self.personasPorAncho()
 }

@@ -8,13 +8,10 @@ class Formacion {
 	method cantidadDeBanios() = 
 		vagones.count{ vagon => vagon.tieneBanio() }
 
+	method estaHabilitada() = 
+		vagones.all{ vagon => vagon.estaHabilitado() }
+
 	method hacerMatenimiento() {
-		vagones.forEach{ vagon => vagon.hacerMantenimiento() }
+		vagones.forEach{ vagon => if (vagon.pesoMaximo() > 2000) vagon.hacerMantenimiento() }
 	}
-	
-	method pesoMaximo() = 
-//		vagones.sum{ vagon => 
-//			vagon.cargaMaxima() + 80 * vagon.cantidadDePasajeros()
-//		}
-		vagones.sum{ vagon => vagon.pesoMaximo() }
 }
